@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/journal")
 public class journalenterycontroler {
@@ -52,9 +52,9 @@ public List<journalentries> getentrybyid(@PathVariable String name){
    
 }
 
-@DeleteMapping("{id}")
-public boolean deletentrybyid(@PathVariable ObjectId id){
-    serv.deletebyid(id);
+@DeleteMapping("{id},{name}")
+public boolean deletentrybyid(@PathVariable ObjectId id ,@PathVariable String name){
+    serv.deletebyid(id,name);
     return true;
 }
 @DeleteMapping()
@@ -62,15 +62,15 @@ public void deletentries(){
     serv.deleteall();
 }
 
-// @PutMapping("{id}")
-// public journalentries updatentrybyid(@PathVariable ObjectId id, @RequestBody journalentries newent) {
-//    journalentries oldent= serv.getone(id).orElse(null);
-//    if(oldent!=null){
-//    oldent.setName(newent.getName() != null && newent.getName()!=("")? newent.getName(): oldent.getName()) ;
-//    oldent.setCollage(newent.getCollage() != null && newent.getCollage()!=("")? newent.getCollage(): oldent.getCollage()) ;
-//    }
-//    serv.saveEntry(oldent);
-//    return oldent;
-// }
+@PutMapping("{id},{name}")
+public journalentries updatentrybyid(@PathVariable ObjectId id, @RequestBody journalentries newent,@PathVariable String name) {
+   journalentries oldent= serv.getone(id).orElse(null);
+   if(oldent!=null){
+   oldent.setName(newent.getName() != null && newent.getName()!=("")? newent.getName(): oldent.getName()) ;
+   oldent.setCollage(newent.getCollage() != null && newent.getCollage()!=("")? newent.getCollage(): oldent.getCollage()) ;
+   }
+   serv.saveEntry(oldent);
+   return oldent;
+}
 }
 

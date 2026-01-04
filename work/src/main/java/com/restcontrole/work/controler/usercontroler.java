@@ -29,7 +29,6 @@ public class usercontroler {
 
     @PostMapping()
     public boolean createuser(@RequestBody user user) {
-
         serv.saveuser(user);
         return true;
     }
@@ -50,7 +49,7 @@ public class usercontroler {
         serv.deleteall();
     }
 
-    @PutMapping("{id}/{pass}")
+    @PutMapping("{id},{pass}")
     public ResponseEntity<user> updateUser(@RequestBody user newUser,
             @PathVariable ObjectId id,
             @PathVariable String pass) {

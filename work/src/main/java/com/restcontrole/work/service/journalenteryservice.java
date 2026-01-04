@@ -8,47 +8,55 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.restcontrole.work.entries.journalentries;
 import com.restcontrole.work.entries.user;
 
-
 import com.restcontrole.work.repository.journalenteryrepository;
+
 @Component
 public class journalenteryservice {
 
     @Autowired
-    private journalenteryrepository  repo;
-    @Autowired 
+    private journalenteryrepository repo;
+    @Autowired
     private userservice userv;
 
-    public void saveEntry(journalentries val, String name){
-     try{user user=userv.findByUserName(name);
-         val.setDate(LocalDateTime.now());   
-       journalentries entery=repo.save(val);
-       user.getEntry().add(entery);
-       userv.saveuser(user);
-     }
-      catch (Exception e) {
-            // Log the exception instead of printing ResponseEntity
-            System.err.println("Error saving entry: " + e.getMessage());
-            throw new RuntimeException("Failed to save entry", e);
-        } 
+    @Transactional
+    public void saveEntry(journalentries val, String name) {
+        user user = userv.findByUserName(name);
+        val.setDate(LocalDateTime.now());
+        journalentries entery = repo.save(val);
+        user.getEntry().add(entery);
+        userv.saveuser(user);
+
     }
 
-    public List<journalentries> getallentries(){
+    @SuppressWarnings("null")
+    public void saveEntry(journalentries val) {
+        repo.save(val);
+    }
+
+    public List<journalentries> getallentries() {
         return repo.findAll();
 
     }
+
     @SuppressWarnings("null")
-    public Optional<journalentries> getone(ObjectId id){
+    public Optional<journalentries> getone(ObjectId id) {
         return repo.findById(id);
     }
+
     @SuppressWarnings("null")
-    public void deletebyid(ObjectId id){
+    public void deletebyid(ObjectId id, String name) {
+        user user = userv.findByUserName(name);
+        user.getEntry().removeIf(x -> x.getId().equals(id));
+        userv.saveuser(user);
         repo.deleteById(id);
     }
-    public void deleteall(){
-    repo.deleteAll();
+
+    public void deleteall() {
+        repo.deleteAll();
     }
 }
