@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>try things</title>
+</head>
+<body>
+ <input type="n" id="num-val" placeholder="enter you number">
+ <button onclick="hey()">done</button>
+  <h2 id="show"></h2>
+</body>
+<script>
+  let pre = document.getElementById("show");
+  let num = document.querySelector("#num-val");
+  
+  async function hey() {
+    try {
+      const res = await fetch("/hello", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(parseInt(num.value))
+      });
+      
+      if (!res.ok) throw new Error("network problems");
+      const data = await res.json();
+      pre.textContent = data;
+    } catch (err) {
+      console.error(err);
+      pre.textContent = "Error: " + err.message;
+    }
+  }
+</script>
+</html>

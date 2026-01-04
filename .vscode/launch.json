@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "DemoApplication",
+            "request": "launch",
+            "mainClass": "com.first.demo.DemoApplication",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-WorkApplication<work>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.restcontrole.work.WorkApplication",
+            "projectName": "work",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
