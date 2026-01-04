@@ -25,12 +25,15 @@ public class journalenteryservice {
 
     @Transactional
     public void saveEntry(journalentries val, String name) {
-        user user = userv.findByUserName(name);
+       try{ user user = userv.findByUserName(name);
         val.setDate(LocalDateTime.now());
         journalentries entery = repo.save(val);
         user.getEntry().add(entery);
         userv.saveuser(user);
-
+       }
+       catch(Exception e){
+        System.out.println(e);
+       }
     }
 
     @SuppressWarnings("null")
