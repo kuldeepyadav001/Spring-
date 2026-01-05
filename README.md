@@ -10,7 +10,4 @@ The goal is to explore core concepts such as dependency injection, REST APIs, an
 - Configuration and dependency injection examples
 - Practice code for learning and experimentation
 
-## 📖 Usage
-Clone the repository and run the project using:
-```bash
-mvn spring-boot:run
+
