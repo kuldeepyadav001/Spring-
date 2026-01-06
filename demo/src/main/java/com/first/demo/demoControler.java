@@ -42,10 +42,10 @@ public class demoControler {
         repo.deleteAll();
     }
 
-    // @DeleteMapping("/{id}")
-    // public void deleteEntry(@PathVariable ObjectId id) {
-    //     repo.deleteById(id);
-    // }
+    @DeleteMapping("/{id}")
+    public void deleteEntry(@PathVariable ObjectId id) {
+        repo.deleteById(id);
+    }
 
     @GetMapping("/download")
     public ResponseEntity<String> downloadFile() {

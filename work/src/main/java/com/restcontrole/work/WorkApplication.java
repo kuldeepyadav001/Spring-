@@ -16,7 +16,7 @@ public class WorkApplication {
 
 		SpringApplication.run(WorkApplication.class, args);
 	}
-
+@SuppressWarnings("null")
 	@Bean
 	public PlatformTransactionManager trans(MongoDatabaseFactory dbfactory) {
 		return new MongoTransactionManager(dbfactory);
