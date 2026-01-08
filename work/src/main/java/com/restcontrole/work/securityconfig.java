@@ -16,6 +16,7 @@ public class securityconfig{
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/journal/**").permitAll()
                 .anyRequest().authenticated()   // all endpoints require login
             )
             .httpBasic(Customizer.withDefaults()) // enable Basic Auth

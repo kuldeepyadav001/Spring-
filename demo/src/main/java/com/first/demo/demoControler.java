@@ -41,7 +41,7 @@ public class demoControler {
     public void deleteEntry() {
         repo.deleteAll();
     }
-
+@SuppressWarnings("null")
     @DeleteMapping("/{id}")
     public void deleteEntry(@PathVariable ObjectId id) {
         repo.deleteById(id);
