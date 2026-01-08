@@ -15,11 +15,13 @@ import org.bson.types.ObjectId;import lombok.Data;
 public class user {
     @Id
     private ObjectId id;
-    @NonNull
     @Indexed(unique = true)
+    @NonNull
+
     private String username;
     @NonNull
     private String password;
     @DBRef
     private List<journalentries> entry= new ArrayList<>();
+     private List<String> roles;
 }
