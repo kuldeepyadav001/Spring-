@@ -7,15 +7,14 @@ import java.util.Optional;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.restcontrole.work.entries.journalentries;
 import com.restcontrole.work.entries.user;
-
+import org.springframework.stereotype.Service;
 import com.restcontrole.work.repository.journalenteryrepository;
 
-@Component
+@Service
 public class journalenteryservice {
 
     @Autowired

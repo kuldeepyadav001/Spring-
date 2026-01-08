@@ -5,12 +5,12 @@ import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.restcontrole.work.entries.user;
 import com.restcontrole.work.repository.userrepository;
 
-@Component
+@Service
 public class userservice {
   @Autowired
     private userrepository  repo;
