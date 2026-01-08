@@ -1,19 +1,17 @@
 package com.restcontrole.work.service;
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.restcontrole.work.repository.userrepository;
 import com.restcontrole.work.entries.user;
-public class userdetailserviceimp implements UserDetailsService{
+@Service
+public class userdetailservice implements UserDetailsService{
 
 @Autowired
 private userrepository userepo;
-
-
 @Override
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 
